@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="button" name="btn" id="btn" value="Input-Button">
+    <button type="button">button</button>
+    <p id="t1">this is p1</p>
+    <p id="t2">this is p2</p>
+    <p class="k1">this is p3</p>
+    <p class="k2">this is p4</p>
+    <p>this is p5</p>
+    <p>this is p6</p>
+
+    <ul class="kk">ul1
+        <li class="k2">li 1</li>
+        <li class="k1">li 2</li>
+        <li>li 3</li>
+    </ul>
+    <ul class="kk">ul1
+        <li class="k2">li 1</li>
+        <li class="k1">li 2</li>
+        <li>li 3</li>
+    </ul>
+    <ul class="kk">ul1
+        <li class="k2">li 1</li>
+        <li class="k1">li 2</li>
+        <li>li 3</li>
+    </ul>
+    <p><a href="#hfg" target="_blank">this is link with target _blank</a></p>
+    <p><a href="#nklhkgj">this is link</a></p>
+    <p><a href="#hfg" target="_blank">this is link with target _blank</a></p>
+    <button type="button">button</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('p').click(function () {
+                //$('p').hide();                      //hide all p
+                //$(this).hide();                        //hide only clicked p                                 space not allowed in selectors
+                //$(".k1").hide();                        //hide all class k1
+                //$("p.k1").hide();                       //hide k1 with p
+                //$('#t1').hide();                         //hide unique id t1
+                //$("p:first").hide();                          //hide first p
+                //$("p:odd").css("color","blue");                  //change color of odd p on click
+                //$('li:even').css("background-color","red");          //change background of even red to red       
+                //$('ul li:first').css("font-weight","600");             //change font-weight of first ul first li to 600
+                //$('ul li:first-child').css("font-weight","600");        //change font-weight of all ul first li to 600
+                //$(' input:button').hide();                                       //hide input type button
+            })
+
+            $("button").click(function(){
+                //$("[href]").hide()                                        //hide attribute href on click of button
+                //$('a[target=_blank]').hide();                               //hide all a with target _blank(proprrity value) on click of button
+            })
+            $('*').css("color","brown");
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>this is p1</p>
+    <p>this is p2</p>
+    <p>this is p3</p>
+    <button type="button" id="btn1">change</button>
+
+<div  style="height: 50px;width: 50px;background-color: brown;display: none;"></div>
+<div id="d1" style="height: 50px;width: 50px;background-color: rgb(50, 42, 165);display: none;"></div>
+<div id="d2" style="height: 50px;width: 50px;background-color: rgb(163, 165, 42);display: none;"></div>
+<button type="button" id="btn2">fade</button>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+<!-- hide(300) show(600) toggle(457) -->
+<!-- fadeIn("slow") fadeOut(500)  fadeToggle() fadeTo-->
+<!-- slideUp() slideDown() slideToggle() -->
+
+
+    <script>
+        $(document).ready(function () {
+            $("#btn1").click(function () {
+                $('p:first').toggle(300);
+                $('p:odd').css("color", "gray");
+            })
+            $('#btn2').click(function(){
+                $('#d1').fadeIn(3000);
+                $('#d2').fadeToggle(3000);
+                $('div:first').fadeTo(3000,0.14);
+
+            })
+        })
+
+    </script>
+</body>
+
+</html>
