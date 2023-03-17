@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                </tr>
+            </thead>
+            <tbody id="result">
+
+            </tbody>
+            <button id="get">Get</button>
+        </table>
+
+        <script>
+            $('#get').click(function(){
+                $.ajax({
+                 url:'https://gorest.co.in/public/v2/users',
+                 method:"Get",
+                 beforeSend:function(){
+                    console.log("data is loaded")
+                 },
+                success:function(response,status){
+                  
+                   $('tbody>tr').remove()
+                   for(let i=0;i<response.length;i++){
+                    
+                    $('#result').append(`<tr><td>${response[i]["name"]}</td><td>${response[i]["email"]}</td><td>${response[i]["gender"]}</td></tr>`)
+                   }
+                },
+                status:function(error,status){
+                   console.log(error)
+                }
+
+            })
+            })
+           
+        </script>
+</body>
+</html>

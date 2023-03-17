@@ -5,40 +5,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 400px
+        }
+
+        th {
+            border: 1px solid black
+        }
+    </style>
     <title>Document</title>
 </head>
 
 <body>
-<table id="tb"></table>
+    <table id="tb"></table>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
     <script>
         let arr = [{
-                "product": "toy",
-                "details": {
-                    "discription": "grey",
-                    "price": "45"
-                }
-            },
-            {
-                "product": "keyboard",
-                "details": {
-                    "discription": "black",
-                    "price": "500"
-                }
-            }
+            "product": "toy",
+            "details": {
+                "discription": "grey",
+                "price": "45"
+            }, "design": { "size": { "h": 5, "w": 4, "shape": "rounded" } }
+        },
+        {
+            "product": "keyboard",
+            "details": {
+                "discription": "black",
+                "price": "500"
+            }, "design": { "size": { "h": 3, "w": 8, "shape": "rectangle" } }
+        }
         ];
 
         $(document).ready(function () {
-            $(arr).each(function(index,data){
-                $(arr).each(function(i,data){
-                    $('<th></th>').text(data.product).attr("id","product"+(i+1)).appendTo($("#tb"));
-                })   
+
+            // var table = $("<table></table>").css("width","700px");
+            // $(arr).each(function (index, data) {
+            //     var row = $("<tr></tr>").css({"border":"1px solid black","color":"grey"});
+            //     $("<td></td>").text(data.product).appendTo(row).css("border","1px solid black");
+            //     var res = Object.keys(data.details);
+            //     for(i=0 ; i<res.length ; i++){
+            //         $("<td></td>").text(data.details[res[i]]).appendTo(row).css("border","1px solid black");
+            //     }
+            //     $(row).appendTo(table);
+            // })
+            // $(table).appendTo($("body"));
+            var table = $("<table></table>");
+            var head = $("<tr><td>Product</td><td>Discription</td><td>Price</td><td>Height</td><td>Width</td><td>Shape</td></tr>").appendTo(table).css("border","1px solid black")
+            $(arr).each(function (index, data) {
+                var row = $("<tr></tr>");
+                $("<td></td>").text(data.product).appendTo(row).css("border","1px solid black");
+                var res = Object.keys(data.details)
+                var oth =Object.keys(data.design.size)
+                for (let i = 0; i < res.length; i++) {
+                    $("<td></td>").text(data.details[res[i]]).appendTo(row).css("border","1px solid black");
+
+                }
+                for (let i = 0; i < oth.length; i++) {
+                    $("<td></td>").text(data.design.size[oth[i]]).appendTo(row).css("border","1px solid black");
+
+                }
+
+                $(row).appendTo(table)
             })
-             var table = $
+            $(table).appendTo($("body"))
         })
+
+
+
     </script>
 
 </body>

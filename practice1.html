@@ -11,9 +11,17 @@
     <title>Document</title>
 </head>
 <body>
-    <p>this is first paragrapg</p>
+    <div class="k1">
+        <p>this is first paragrapg</p>
     <p>tis is second paragraph</p>
     <p>this is <b>third</b> paragraph</p>
+    </div>
+    <div class="k2">
+        <p>this is first paragrapg</p>
+    <p>tis is second paragraph</p>
+    <p>this is <b>third</b> paragraph</p>
+    </div>
+    
     
     <ul id="gk"></ul>
     <table id="tb"></table>
@@ -22,10 +30,10 @@
 
     <script>
         $(document).ready(function(){
-            $('p').each(function(i,ele){
+            $('div.k1 p').each(function(i,ele){
                 $("<li></li>").html(ele).appendTo($('#gk'));
             })
-            $('p').each(function(i,el){
+            $('div.k2 p').each(function(i,el){
                 $('<th></th>').html(el).appendTo($('#tb'));
             })
         })
