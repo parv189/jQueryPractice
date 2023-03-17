@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        th{border:1px solid black;border-collapse: collapse;}
+        table{border-collapse: collapse;}
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <p>this is first paragrapg</p>
+    <p>tis is second paragraph</p>
+    <p>this is <b>third</b> paragraph</p>
+    <ul id="gk"></ul>
+    <table id="tb"></table>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('p').each(function(i,ele){
+                $("<li></li>").html(ele).appendTo($('#gk'));
+            })
+            $('p').each(function(i,el){
+                $('<th></th>').html(el).appendTo($('#tb'));
+            })
+        })
+    </script>
+
+    </body>
+</html>

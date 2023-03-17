@@ -7,9 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-<p id="p1">this is a paragraph with <h1>h1</h1>fghsf</p>
+<p id="p1">this is a paragraph with <b>bold text</b> fghsf</p>
+<p>number: <input type="number" id="num" value="34"></p>
+<a href="https://www.w3schools.com/jquery/tryit.asp?filename=tryjquery_dom_attr_get" id="link"> link</a>
 <button type="button" id="btn1">show text</button>
 <button type="button" id="btn2">show html</button>
+<button type="button" id="btn3">show val</button>
+<button type="button" id="btn4">show attr</button>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
@@ -21,6 +25,12 @@ $(document).ready(function(){
     })
     $('#btn2').click(function(){
         alert("html :"+ $('#p1').html())
+    })
+    $('#btn3').click(function(){
+        alert('value :'+ $("input").val())
+    })
+    $('#btn4').click(function(){
+        alert('attr'+ $('#link').attr())
     })
 })
         </script>

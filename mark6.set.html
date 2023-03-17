@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<p >heyyy this is <b>first </b> paragraph</p>
+<p id="p2">heyyy this is <b>second </b> paragraph</p>
+<p>name: <input type="text" value="parv"></p>
+    
+<div>
+    <button type="button" id="btn1">see text</button>
+    <button type="button" id="btn2">see html</button>
+    <button type="button" id="btn3">see val</button>
+</div> 
+<div>
+    <button type="button" id="btn4">see text,html(i,old)</button>
+    
+    <button type="button" id="btn6">see val(i,old)</button>
+</div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#btn1').click(function(){
+            $('p:first').text('i have chnged paragraph')
+        })
+        $('#btn2').click(function(){
+            $('#p2').html('this is <b>pure</b>html')
+        })
+        $('#btn3').click(function(){
+            $('input').val('Miraj')
+        })
+        $('#btn4').click(function(){
+            $('p:first').text(function(i,old){
+                return "old text :"+ old +" new text : this is new text (index :"+ i +")";
+            })
+            $('#p2').html(function(i,old){
+                return "old text :"+ old +"new html : this is <b>brand</b> new (index : "+i+")";  
+            })
+        })
+        $('#btn6').click(function(){
+            $('input').val(function(i,old){
+                return i+"asdjdn"
+            })
+        })
+    })
+</script>
+
+</body>
+</html>

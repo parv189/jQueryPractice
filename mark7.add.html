@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>hey this is p</p>
+    <ul>
+        <li>hey</li>
+    </ul>
+    
+    <button type="button" id="btn1">appand p</button>
+    <button type="button" id="btn2">appand li</button>
+    <button type="button" id="btn3">appand all</button>
+    <button type="button" id="btn4">143</button>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+
+        <script>
+           //$('#img').after('<b>dsgf</b>') 
+           //$('#img').before('<i>dsgf</i>') 
+           
+$(document).ready(function(){
+    $('#btn1').click(function(){
+        $('p').append("<b> appanded</b>")  
+    });
+    $('#btn2').click(function(){
+        $('ul').append("<li>hii</li>")
+    })
+    $('#btn3').click(function(){                    //by creating var we can create whole new p
+        var a = "<p>append</p>";
+        var b = $('<p></p>').text('append')
+        $('body').append(a,b)
+    })
+    $('#btn4').click(function(){
+        $('p').after('<b>i</b><i>love</i><b>you</b>')
+    })
+}); 
+        </script>
+</body>
+</html>     
