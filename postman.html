@@ -5,93 +5,220 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            width: 600px;
+            background:transparent;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+            border-radius: 4px;
+        }
+        .row1 {
+            display: flex;
+            width: 100%;
+            padding: 10px;
+            justify-content: center;
+        }
+
+        .row2 {
+            display: flex;
+            width: 40%;
+            padding: 10px;
+            justify-content: start;
+            padding-left: 38px;
+        }
+
+        .radio {
+            display: flex;
+            justify-content: space-between;
+        }
+        .colum1 {
+            width: 10%;
+            padding-top: 6px;
+
+        }
+        .colum2 {
+            width: 80%;
+        }
+
+        input[type="text"],
+        input[type="email"] {
+            width: 60%;
+            height: 100%;
+        }
+    </style>
     <title>Document</title>
 </head>
-<form>
-    <label for="name">Name</label>
-    <input type="text" id="fname" name="name"><br>
-    <label for="email">Email</label>
-    <input type="email" id="em" name="email"><br>
-    <label for="gender">Gender:</label>
-    <input type="radio" name="gender" value="male">Male
-    <input type="radio" name="gender" value="female">Female <br>
-    <label for="status">status:</label>
-    <input type="radio" name="stat" value="active">Active
-    <input type="radio" name="stat" value="unactive">Unactive
 
-</form>
+    <div class="container">
+        <div class="row1">
+            <div class="colum1">
+                <label for="name">Name :</label>
+            </div>
+            <div class="colum2">
+                <input type="text" id="fname" name="name">
+            </div>
+        </div>
+        <div class="row1">
+            <div class="colum1">
+                <label for="email">Email :</label>
+            </div>
+            <div class="colum2">
+                <input type="email" id="em" name="email">
+            </div>
+        </div>
+        <div class="radio">
+            <div class="row2">
+                <label for="gender">Gender:</label>
+                <input type="radio" name="gender" value="male">Male
+                <input type="radio" name="gender" value="female">Female <br>
+            </div>
+        </div>
+        <div class="radio">
+            <div class="row2">
+                <label for="status">status:</label>
+                <input type="radio" name="stat" value="active">Active
+                <input type="radio" name="stat" value="inactive">Inactive
+            </div>
+    </div>
+    <div class="but">
 
-<button type="button" id="btn1" onclick="get()">Get</button>
-<button type="button" id="btn2" onclick="post()">post</button>
-
+    </div>
 <body>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"
         integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
     <script>
-        function get() {
+        $(document).ready(function () {
 
-            var settings = {
-                url: "https://gorest.co.in/public/v2/users",
-                method: "GET",
-                timeout: 0,
-                headers: {
-                    Authorization: "Bearer 5b08025ddb7beae633c9a0942ceacc4b9af8135e14466c81f34ef42c6e3646d7"
-                },
-            };
+            var allData;
+            $(`<button></button>`).text("Get").appendTo($('.but')).click(function () { get() });
+            $(`<button></button>`).text("post").appendTo($('.but')).click(function () { post() });
+            $(`<button id='btn3'></button>`).text("Update").appendTo($('.but'));
+            //get
+            function get() {
+                var settings = {
+                    url: 'https://gorest.co.in/public/v2/users',
+                    method: 'GET',
+                    timeout: 0,
+                    headers: {
+                        Authorization: "Bearer 5b08025ddb7beae633c9a0942ceacc4b9af8135e14466c81f34ef42c6e3646d7"
+                    },
+                };
 
-            $.ajax(settings).done(function (response) {
-                $("body>table").remove()
-                var table = $("<table></table>");
-                $(response).each(function (index, data) {
-                    var row = $("<tr></tr>");
-                    $("<td></td>").text(data.id).appendTo(row);
-                    $("<td></td>").text(data.name).appendTo(row);
-                    $("<td></td>").text(data.email).appendTo(row);
-                    $("<td></td>").text(data.gender).appendTo(row);
-                    $("<td></td>").text(data.status).appendTo(row);
-                    $(row).appendTo(table)
-                })
-                $(table).appendTo($("body"))
-            });
-        }
-
-
-
-        //post
-        function post() {
-
-            var name1 = $("#fname").val()
-            var email1 = $("#em").val()
-            var gender1 = $("input[name='gender']:checked").val()
-            var status1 = $("input[name='stat']:checked").val()
-            console.log(name1, email1, gender1, status1);
-            var settings = {
-                url: "https://gorest.co.in/public/v2/users",
-                method: "POST",
-                timeout: 0,
-                headers: {
-                    "Authorization": "Bearer 5b08025ddb7beae633c9a0942ceacc4b9af8135e14466c81f34ef42c6e3646d7",
-                    "Content-Type": "application/json"
-                },
-                data: JSON.stringify({
-                    name: name1,
-                    email: email1,
-                    gender: gender1,
-                    status: status1
-                }),
-            };
-
-            $.ajax(settings).done(function (response) {
-                console.log(response);
-                get();
-            })
-                .fail(function (error) {
-                    console.log(error)
+                $.ajax(settings).done(function (response) {
+                    var raw;
+                    $("body>table").remove()
+                    var table = $("<table></table>").css({"border-collapse":"collapse"});
+                    $(response).each(function (index, data) {
+                        var row = $("<tr></tr>").css({"border":"1px solid black"});
+                        $("<td></td>").text(data.id).appendTo(row).css({"border":"1px solid black"});
+                        $("<td></td>").text(data.name).appendTo(row).css({"border":"1px solid black"});
+                        $("<td></td>").text(data.email).appendTo(row).css({"border":"1px solid black"});
+                        $("<td></td>").text(data.gender).appendTo(row).css({"border":"1px solid black"});
+                        $("<td></td>").text(data.status).appendTo(row).css({"border":"1px solid black"});
+                        $(`<button></button>`).text("edit").appendTo(row).click(function () { editdata(index) }).css({"border":"1px solid black"});
+                        $(`<button></button>`).text("delete").appendTo(row).click(function () { deletedata(index) }).css({"border":"1px solid black"});
+                        $(row).appendTo(table)
+                    })
+                    $(table).appendTo("body");
+                    allData = response;
                 });
-        }
+            }
+            //post
+            function post() {
+                let name1 = $('#fname').val();
+                let email1 = $('#em').val();
+                let gen = $("input[name='gender']:checked").val();
+                let stat = $("input[name='stat']:checked").val();
+                console.log(name1, email1, gen, status);
+                var settings = {
+                    url: 'https://gorest.co.in/public/v2/users',
+                    method: 'POST',
+                    timeout: 0,
+                    headers: {
+                        Authorization: "Bearer 5b08025ddb7beae633c9a0942ceacc4b9af8135e14466c81f34ef42c6e3646d7",
+                        'Content-Type': 'application/json',
+                    },
+                    data: JSON.stringify({
+                        name: name1,
+                        email: email1,
+                        gender: gen,
+                        status: stat,
+                    }),
+                };
+                $.ajax(settings)
+                    .done(function (response) {
+                        console.log(response);
+                        get();
+                    })
+                    .fail((error) => {
+                        console.log(error);
+                    });
+            }
+            // Delete Method
+            function deletedata(index) {
+                var remove = allData[index].id;
+                var settings = {
+                    url: 'https://gorest.co.in/public/v2/users/' + remove,
+                    method: 'DELETE',
+                    timeout: 0,
+                    headers: {
+                        Authorization:
+                            "Bearer 5b08025ddb7beae633c9a0942ceacc4b9af8135e14466c81f34ef42c6e3646d7",
+                        'Content-Type': 'application/json',
+                    },
+                };
 
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
+                    get();
+                });
+            }
+            // Update Method
+            function editdata(index) {
+                var edit = allData[index];
+                $('#btn3').removeClass('d-none');
+                $('#fname').val(edit.name);
+                $('#em').val(edit.email);
+                $('#' + edit.gender).prop('checked', true);
+                $('#' + edit.status).prop('checked', true);
 
+                $('#btn3').click(function () {
+                    let name2 = $('#fname').val();
+                    let email2 = $('#em').val();
+                    let gen1 = $("input[name='gender']:checked").val();
+                    let stat1 = $("input[name='stat']:checked").val();
+
+                    var settings = {
+                        url: 'https://gorest.co.in/public/v2/users/' + edit.id,
+                        method: 'PATCH',
+                        timeout: 0,
+                        headers: {
+                            Authorization:
+                                "Bearer 5b08025ddb7beae633c9a0942ceacc4b9af8135e14466c81f34ef42c6e3646d7",
+                            'Content-Type': 'application/json',
+                        },
+                        data: JSON.stringify({
+                            name: name2,
+                            email: email2,
+                            gender: gen1,
+                            status: stat1,
+                        }),
+                    };
+                    $.ajax(settings).done(function (response) {
+                        console.log(response);
+                        $('#btn3').addClass('d-none');
+                        get();
+                    });
+                });
+            }
+        })
     </script>
 </body>
 
